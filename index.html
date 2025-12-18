@@ -42,6 +42,20 @@
             border-radius: 10px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: buildCake 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes buildCake {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .cake::before {
@@ -53,6 +67,19 @@
             height: 20px;
             background: linear-gradient(to bottom, #f5f5dc 0%, #e8e8d0 100%);
             border-radius: 10px 10px 0 0;
+            opacity: 0;
+            animation: addFrosting 0.6s ease-out 1.3s forwards;
+        }
+
+        @keyframes addFrosting {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cake-layer {
@@ -63,6 +90,19 @@
             height: 15px;
             background: #f4a460;
             border-radius: 3px;
+            opacity: 0;
+            animation: addLayer 0.5s ease-out 1.9s forwards;
+        }
+
+        @keyframes addLayer {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
         }
 
         .candle {
@@ -75,6 +115,19 @@
             transform: translateX(-50%);
             border-radius: 3px 3px 0 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            animation: addCandle 0.5s ease-out 2.4s forwards;
+        }
+
+        @keyframes addCandle {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
 
         .flame {
@@ -85,8 +138,22 @@
             position: absolute;
             top: -25px;
             left: 50%;
-            transform: translateX(-50%);
-            animation: flicker 0.5s infinite alternate;
+            transform: translateX(-50%) scale(0);
+            animation: lightCandle 0.4s ease-out 2.9s forwards, flicker 0.5s infinite 3.3s alternate;
+        }
+
+        @keyframes lightCandle {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.3);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
         }
 
         @keyframes flicker {
@@ -99,7 +166,9 @@
             color: #c2185b;
             text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
             font-weight: 700;
-            animation: fadeIn 2s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-in 3.4s forwards;
         }
 
         @keyframes fadeIn {
@@ -150,6 +219,8 @@
             box-shadow: 0 5px 15px rgba(194, 24, 91, 0.4);
             transition: all 0.3s ease;
             font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 1s ease-in 4.4s forwards;
         }
 
         .blow-button:hover {
@@ -225,12 +296,54 @@
             font-family: 'Georgia', serif;
         }
 
+        .book-intro-text {
+            font-size: 1.3em;
+            color: #c2185b;
+            margin-bottom: 30px;
+            font-weight: 600;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+            padding: 0 20px;
+            font-family: 'Georgia', serif;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .fly-button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c2185b 100%);
+            color: white;
+            border: none;
+            padding: 20px 45px;
+            font-size: 1.4em;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(194, 24, 91, 0.5);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            animation: pulse 2s infinite;
+        }
+
+        .fly-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(194, 24, 91, 0.7);
+        }
+
+        .fly-button:active {
+            transform: translateY(0) scale(1);
+        }
+
         .photo-grid {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 30px;
             padding: 0 20px;
+        }
+
+        .photo-grid.show {
+            display: grid;
+            animation: fadeIn 1.5s ease-in;
         }
 
         .photo-item {
@@ -248,6 +361,156 @@
             box-shadow: 0 12px 30px rgba(194, 24, 91, 0.4);
         }
 
+        .open-book-button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c2185b 100%);
+            color: white;
+            border: none;
+            padding: 20px 45px;
+            font-size: 1.4em;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(194, 24, 91, 0.5);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            animation: pulse 2s infinite;
+        }
+
+        .open-book-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(194, 24, 91, 0.7);
+        }
+
+        .book-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .book {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 85vh;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .book-page {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(to bottom, #fffef9 0%, #fff9f0 100%);
+            position: relative;
+        }
+
+        .book-page.active {
+            display: flex;
+            animation: pageFlip 0.6s ease-in-out;
+        }
+
+        @keyframes pageFlip {
+            0% { opacity: 0; transform: rotateY(-90deg); }
+            100% { opacity: 1; transform: rotateY(0); }
+        }
+
+        .book-page img {
+            max-width: 100%;
+            max-height: calc(100% - 100px);
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-intro {
+            font-size: 1.3em;
+            color: #c2185b;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.2em;
+            color: #c2185b;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+        }
+
+        .book-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f5f5f5;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c2185b 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(194, 24, 91, 0.4);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .close-book {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #c2185b;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-book:hover {
+            transform: rotate(90deg);
+            background: #880e4f;
+        }
+
         @media (max-width: 768px) {
             .message {
                 font-size: 2em;
@@ -255,8 +518,15 @@
             .love-message {
                 font-size: 1.1em;
             }
-            .photo-grid {
-                grid-template-columns: 1fr;
+            .book {
+                width: 95%;
+                height: 90vh;
+            }
+            .book-page {
+                padding: 20px;
+            }
+            .book-page img {
+                max-height: calc(100% - 80px);
             }
         }
     </style>
@@ -281,8 +551,31 @@
                 Happy birthday to my no.1 forever bestfriend u don't know how much i love u shadoo it is always fun having you around and seeing you always happy and successful keeping u forever and forever bestie love u shado>>333
             </p>
             
+            <p class="book-intro-text">
+                Love u bestie for making this memories more and more every year
+            </p>
+
+            <button class="fly-button" id="flyButton" onclick="flyToMemories()">✈️ Click to fly to the memories ✈️</button>
+
             <div class="photo-grid" id="photoGrid">
                 <!-- Photos will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Book Container -->
+        <div class="book-container" id="bookContainer" style="display: none;">
+            <div class="book">
+                <button class="close-book" onclick="closeBook()">✕</button>
+                
+                <div id="bookPages">
+                    <!-- Pages will be generated here -->
+                </div>
+                
+                <div class="book-nav">
+                    <button class="nav-button" id="prevBtn" onclick="previousPage()">← Previous</button>
+                    <span id="pageIndicator" style="font-weight: 600; color: #c2185b; font-size: 1.1em;">Page 1 of 14</span>
+                    <button class="nav-button" id="nextBtn" onclick="nextPage()">Next →</button>
+                </div>
             </div>
         </div>
     </div>
@@ -305,11 +598,8 @@
             'photo13.jpeg',
             'photo14.jpeg'
         ];
-        
-        // Try to load images with error handling
-        function loadImageWithFallback(filename) {
-            return filename;
-        }
+
+        let currentPage = 0;
 
         // Blow candle function
         function blowCandle() {
@@ -336,9 +626,16 @@
             surpriseButton.style.display = 'none';
             surpriseText.style.display = 'none';
             surpriseContent.style.display = 'block';
+        }
+
+        // Fly to memories function
+        function flyToMemories() {
+            const flyButton = document.getElementById('flyButton');
+            const photoGrid = document.getElementById('photoGrid');
+            
+            flyButton.style.display = 'none';
             
             // Load photos
-            const photoGrid = document.getElementById('photoGrid');
             photos.forEach((photo, index) => {
                 const img = document.createElement('img');
                 img.src = photo;
@@ -358,7 +655,102 @@
                 
                 photoGrid.appendChild(img);
             });
+            
+            photoGrid.classList.add('show');
         }
+
+        // Open book function
+        function openBook() {
+            const bookContainer = document.getElementById('bookContainer');
+            const bookPages = document.getElementById('bookPages');
+            
+            // Clear previous pages
+            bookPages.innerHTML = '';
+            
+            // Create intro page
+            const introPage = document.createElement('div');
+            introPage.className = 'book-page active';
+            const introText = document.createElement('p');
+            introText.className = 'book-intro';
+            introText.textContent = 'Love u bestie for making this memories more and more every year';
+            const introPageNum = document.createElement('div');
+            introPageNum.className = 'page-number';
+            introPageNum.textContent = `Page 1 of ${photos.length + 1}`;
+            introPage.appendChild(introText);
+            introPage.appendChild(introPageNum);
+            bookPages.appendChild(introPage);
+            
+            // Create pages for each photo
+            photos.forEach((photo, index) => {
+                const page = document.createElement('div');
+                page.className = 'book-page';
+                
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = `Memory ${index + 1}`;
+                
+                const pageNum = document.createElement('div');
+                pageNum.className = 'page-number';
+                pageNum.textContent = `Page ${index + 2} of ${photos.length + 1}`;
+                
+                page.appendChild(img);
+                page.appendChild(pageNum);
+                bookPages.appendChild(page);
+            });
+            
+            currentPage = 0;
+            bookContainer.style.display = 'flex';
+            updateNavButtons();
+        }
+
+        // Close book function
+        function closeBook() {
+            const bookContainer = document.getElementById('bookContainer');
+            bookContainer.style.display = 'none';
+        }
+
+        // Next page function
+        function nextPage() {
+            if (currentPage < photos.length - 1) {
+                const pages = document.querySelectorAll('.book-page');
+                pages[currentPage].classList.remove('active');
+                currentPage++;
+                pages[currentPage].classList.add('active');
+                updateNavButtons();
+            }
+        }
+
+        // Previous page function
+        function previousPage() {
+            if (currentPage > 0) {
+                const pages = document.querySelectorAll('.book-page');
+                pages[currentPage].classList.remove('active');
+                currentPage--;
+                pages[currentPage].classList.add('active');
+                updateNavButtons();
+            }
+        }
+
+        // Update navigation buttons
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const pageIndicator = document.getElementById('pageIndicator');
+            
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === photos.length - 1;
+            pageIndicator.textContent = `Page ${currentPage + 1} of ${photos.length}`;
+        }
+
+        // Keyboard navigation for book
+        document.addEventListener('keydown', function(e) {
+            const bookContainer = document.getElementById('bookContainer');
+            if (bookContainer.style.display === 'flex') {
+                if (e.key === 'ArrowRight') nextPage();
+                if (e.key === 'ArrowLeft') previousPage();
+                if (e.key === 'Escape') closeBook();
+            }
+        });
 
         // Create confetti
         const colors = ['#ffb3ba', '#bae1ff', '#ffffba', '#baffc9', '#ffdfba', '#e0bbe4', '#ffc8dd'];
